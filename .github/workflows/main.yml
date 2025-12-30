@@ -30,6 +30,15 @@ jobs:
           libtool \
           pkg-config
 
+    # Add the Android SDK install step here
+    - name: Install Android SDK
+      run: |
+        sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
+
+    # Now add the license acceptance step
+    - name: Accept Android SDK licenses
+      run: yes | sdkmanager --licenses
+
     - name: Install Buildozer
       run: |
         pip3 install --upgrade pip
@@ -44,3 +53,4 @@ jobs:
       with:
         name: GuessTheBox-APK
         path: bin/*.apk
+
