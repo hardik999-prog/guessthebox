@@ -16,12 +16,11 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y \
+          openjdk-17-jdk \
           python3-pip \
           build-essential \
           git \
-          zip \
-          unzip \
-          openjdk-17-jdk \
+          zip unzip \
           libffi-dev \
           libssl-dev \
           cmake \
@@ -30,13 +29,10 @@ jobs:
           libtool \
           pkg-config
 
-    # Add the Android SDK install step here
     - name: Install Android SDK
-      run: |
-        sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
+      uses: android-actions/setup-android@v3
 
-    # Now add the license acceptance step
-    - name: Accept Android SDK licenses
+    - name: Accept Android licenses
       run: yes | sdkmanager --licenses
 
     - name: Install Buildozer
@@ -53,4 +49,3 @@ jobs:
       with:
         name: GuessTheBox-APK
         path: bin/*.apk
-
