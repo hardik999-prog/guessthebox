@@ -9,38 +9,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Install system dependencies
       run: |
         sudo apt update
         sudo apt install -y \
-          openjdk-17-jdk \
           python3-pip \
           build-essential \
           git \
-          zip unzip \
+          zip \
+          unzip \
+          openjdk-17-jdk \
           libffi-dev \
           libssl-dev \
+          zlib1g-dev \
           cmake \
           autoconf \
           automake \
           libtool \
           pkg-config
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-
-    - name: Install Android SDK packages
-      run: |
-        yes | sdkmanager --licenses
-        sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
-
     - name: Install Buildozer
       run: |
         pip3 install --upgrade pip
-        pip3 install buildozer cython
+        pip3 install buildozer cython==0.29.36
 
     - name: Build APK
       run: |
