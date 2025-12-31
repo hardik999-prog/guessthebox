@@ -7,19 +7,16 @@ source.dir = .
 source.include_exts = py,kv,png,jpg,ogg,wav
 
 version = 0.1
-requirements = python3==3.10.13,kivy,kivymd,pillow
+
+requirements = python3==3.9,kivy,kivymd,pillow
+
 orientation = portrait
 fullscreen = 0
 
-# ANDROID
-android.api = 31
+android.archs = arm64-v8a
 android.minapi = 21
-android.arch = arm64-v8a
-android.allow_backup = True
-
-# IMPORTANT FIXES
+android.api = 31
 android.accept_sdk_license = True
-android.sdk_build_tools = 31.0.0
 
 [buildozer]
 log_level = 2
